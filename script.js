@@ -4,6 +4,8 @@ import { goldMedals, silverMedals, bronzeMedals } from "/data/medalData.js"
 
 const body = document.body
 
+let allMedals = []
+
 const wrapperEl = document.createElement("div")
 wrapperEl.id = "wrapper"
 body.append(wrapperEl)
@@ -80,36 +82,38 @@ function createMedalSection(value, array) {
                     const medalIcon = document.createElement("li")
                     medalIcon.classList.add("medal-icon", value)
                     medalIcons.append(medalIcon)
+
+                    allMedals.push(value)
                     
                     //Add items to medalists
-                    const medalists = medal.medalist.map(medalist => `<li>${medalist}</li>`)
+                    const medalistsLi = medal.medalist.map(medalist => `<li>${medalist}</li>`)
+                    const medalistsAlt = medal.medalist.map(medalist => medalist)
+
                     medalistsList.innerHTML += `
                         <li>
                             <h3>${medal.sport}</h3>
                             <ul>
-                                ${medalists}
+                                ${medalistsLi.join("")}
                             </ul>
-                            <img src="${medal.image}" alt="${medal.medalists}">
+                            <img src="${medal.image}" alt="${medalistsAlt}">
                         </li>
                     `
-                    console.log(medal.medalist)
+
                 })
-                
-                // for (let i = 1; i <= array.length; i++) {
-                //     const listItem = document.createElement("li")
-                //     listItem.classList.add("medal-icon", value)
-                //     medalIcons.append(listItem)
-                // }
+
 
         header.append(h2, medalIcons)
 
         section.append(header)
         section.append(medalistsList)
    
-
     fragment.append(section)
     mainEl.append(fragment)
 }
 
+console.log(allMedals)
+
 createMedalSection("gold", goldMedals)
+createMedalSection("silver", silverMedals)
+createMedalSection("bronze", bronzeMedals)
 
