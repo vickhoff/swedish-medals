@@ -16,42 +16,33 @@ wrapperEl.append(mainEl)
 const footerEl = document.createElement("footer")
 wrapperEl.append(footerEl)
 
+function createHero() {
 
-// ============================================
-// Hero
-// ============================================
+    const heroFragment = document.createDocumentFragment()
 
-const heroFragment = document.createDocumentFragment()
+    const heroEl = document.createElement("header")
+    heroEl.id = "hero"
 
-const heroEl = document.createElement("header")
-heroEl.id = "hero"
+    const h1 = document.createElement("h1")
+    h1.innerHTML = 
+    `
+    <span>
+        Milano<br>
+        Cortina<br>
+        2026<br>
+    </span>
+    Swedish Olympic Medalists
+    `
 
-const h1 = document.createElement("h1")
-h1.innerHTML = 
-`
-<span>
-    Milano<br>
-    Cortina<br>
-    2026<br>
-</span>
-Swedish Olympic Medalists
-`
+    const logoImg = document.createElement("img")
+    logoImg.src = "./images/logo.png"
+    logoImg.setAttribute("alt", "Olympic logo")
 
-const logoImg = document.createElement("img")
-logoImg.src = "./images/logo.png"
-logoImg.setAttribute("alt", "Olympic logo")
+    heroEl.append(h1, logoImg)
+    heroFragment.append(heroEl)
 
-heroEl.append(h1, logoImg)
-heroFragment.append(heroEl)
-
-wrapperEl.insertBefore(heroFragment, mainEl)
-
-
-// ============================================
-// Gold section
-// ============================================
-
-
+    wrapperEl.insertBefore(heroFragment, mainEl)
+}
 
 function createMedalSection(value, array) {
     const fragment = document.createDocumentFragment()
@@ -111,9 +102,36 @@ function createMedalSection(value, array) {
     mainEl.append(fragment)
 }
 
-console.log(allMedals)
+// ============================================
+// Footer
+// ============================================
 
+function createFooter() {
+    const footerFragment = document.createDocumentFragment()
+
+    const footerH2 = document.createElement("h2")
+    footerH2.textContent = "Total medals:"
+
+    const footerMedalIcons = document.createElement("ul")
+    footerMedalIcons.classList.add("medal-icons")
+
+allMedals.forEach(value => {
+    const medal = document.createElement("li")
+    medal.classList.add("medal-icon", value)
+    footerMedalIcons.append(medal)
+})
+
+footerFragment.append(footerH2, footerMedalIcons)
+console.log(footerFragment)
+footerEl.append(footerFragment)
+}
+
+
+
+
+createHero()
 createMedalSection("gold", goldMedals)
 createMedalSection("silver", silverMedals)
 createMedalSection("bronze", bronzeMedals)
+createFooter()
 
