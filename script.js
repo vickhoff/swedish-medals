@@ -1,8 +1,6 @@
 import { goldMedals, silverMedals, bronzeMedals } from "/data/medalData.js"
 
-function createSection() {
 
-}
 
 const body = document.body
 
@@ -45,4 +43,49 @@ heroEl.append(h1, logoImg)
 heroFragment.append(heroEl)
 
 wrapperEl.insertBefore(heroFragment, mainEl)
+
+
+// ============================================
+// Gold section
+// ============================================
+
+
+
+function createMedalSection(value, array) {
+    const fragment = document.createDocumentFragment()
+    console.log(array.length)
+
+    //section
+    const section = document.createElement("section")
+    section.setAttribute("id", `${value}-medalists`)
+    section.classList.add("medalists")
+
+        //section header
+        const header = document.createElement("header")
+        header.setAttribute("id", `header-${value}`)
+        header.classList.add("header-medal")
+
+            //h2
+            const h2 = document.createElement("h2")
+            h2.textContent = value[0].toUpperCase() + value.slice(1).toLowerCase()
+
+            //medal icons
+            const medalIcons = document.createElement("ul")
+            medalIcons.classList.add("medal-icons")
+                
+                for (let i = 1; i <= array.length; i++) {
+                    const listItem = document.createElement("li")
+                    listItem.classList.add("medal-icon", value)
+                    medalIcons.append(listItem)
+                }
+
+        header.append(h2, medalIcons)
+        section.append(header)
+
+    fragment.append(section)
+    mainEl.append(fragment)
+
+}
+
+createMedalSection("gold", goldMedals)
 
