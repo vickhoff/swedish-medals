@@ -53,7 +53,6 @@ wrapperEl.insertBefore(heroFragment, mainEl)
 
 function createMedalSection(value, array) {
     const fragment = document.createDocumentFragment()
-    console.log(array.length)
 
     //section
     const section = document.createElement("section")
@@ -72,19 +71,44 @@ function createMedalSection(value, array) {
             //medal icons
             const medalIcons = document.createElement("ul")
             medalIcons.classList.add("medal-icons")
+
+            //medalists list
+            const medalistsList = document.createElement("ul")
+            medalistsList.classList.add("medalists-list")
+
+                array.forEach(medal => {
+                    const medalIcon = document.createElement("li")
+                    medalIcon.classList.add("medal-icon", value)
+                    medalIcons.append(medalIcon)
+                    
+                    //Add items to medalists
+                    const medalists = medal.medalist.map(medalist => `<li>${medalist}</li>`)
+                    medalistsList.innerHTML += `
+                        <li>
+                            <h3>${medal.sport}</h3>
+                            <ul>
+                                ${medalists}
+                            </ul>
+                            <img src="${medal.image}" alt="${medal.medalists}">
+                        </li>
+                    `
+                    console.log(medal.medalist)
+                })
                 
-                for (let i = 1; i <= array.length; i++) {
-                    const listItem = document.createElement("li")
-                    listItem.classList.add("medal-icon", value)
-                    medalIcons.append(listItem)
-                }
+                // for (let i = 1; i <= array.length; i++) {
+                //     const listItem = document.createElement("li")
+                //     listItem.classList.add("medal-icon", value)
+                //     medalIcons.append(listItem)
+                // }
 
         header.append(h2, medalIcons)
+
         section.append(header)
+        section.append(medalistsList)
+   
 
     fragment.append(section)
     mainEl.append(fragment)
-
 }
 
 createMedalSection("gold", goldMedals)
