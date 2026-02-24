@@ -1,5 +1,7 @@
 # Server-Side vs Client-Side Rendering
 
+This is my comparison of server-side vs client-side rendering. I have two identical copies of a site showing the swedish medalists in the 2026 winter olympics. One version uses javascript to render all the content and one is purely html without any javascript.
+
 ## Performance
 
 **Server-Side Rendering (SSR):**
