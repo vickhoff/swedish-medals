@@ -1,6 +1,9 @@
 import { goldMedals, silverMedals, bronzeMedals } from "/data/medalData.js"
 
 
+const spinner = document.getElementById("spinner-container")
+spinner.classList.add("hidden")
+
 
 const body = document.body
 
@@ -130,6 +133,13 @@ footerEl.append(footerFragment)
 
 
 createHero()
+
+const link = document.createElement("a")
+link.setAttribute("id", "nav")
+link.textContent = "Go to server side rendering"
+link.setAttribute("href", "/ssr.html")
+wrapperEl.insertBefore(link, mainEl)
+
 createMedalSection("gold", goldMedals)
 createMedalSection("silver", silverMedals)
 createMedalSection("bronze", bronzeMedals)

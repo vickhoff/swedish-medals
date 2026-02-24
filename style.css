@@ -81,6 +81,49 @@ li {
     }
 }
 
+#nav {
+    padding-block: 12px;
+    padding-inline: 24px;
+    border-radius: 100px;
+    color: #F3CE15;
+    border: 2px solid #F3CE15;
+    text-decoration: none;
+    margin-top: 56px;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+#nav:hover {
+    padding-inline: 28px;
+}
+
+#spinner-container {
+    text-align: center;
+    margin-inline: auto;
+    margin-block-start: 300px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    margin-inline: auto;
+    margin-block-end: 24px;
+    border: 4px solid rgba(243, 206, 21, 0.2);
+    border-top-color: #F3CE15;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
 .medal-icons {
     display: flex;
     margin-block-start: 5px;
